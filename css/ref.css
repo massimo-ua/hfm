@@ -1,0 +1,30 @@
+#ref {
+    BACKGROUND: #eef3f9; BORDER: gray 1px solid; margin-left: 1%; margin-top: 5px; margin-bottom: 5px; margin-right: 0px; padding: 3px;
+}
+#ref.notes {
+	float: left; width: 350px;
+}
+#ref_container {
+	float: left; padding: 3px; width: 32%; border: 0px; margin-left: 5px;
+}
+#ref table {
+    width: 102%; BORDER: gray 1px ridge; border-collapse: collapse; background: #fffffc;
+}
+#ref table.notes {
+    width: 100%; BORDER: gray 1px ridge; border-collapse: collapse; background: #fffffc;
+}
+#ref td {
+    BORDER: gray 1px solid; color: #00003f; padding: 1px 1px 1px 3px; 
+} 
+#ref td.head {
+    background: #f5f5f5; text-align: center; font-weight: bold; 
+}
+#ref tr.head2 {
+    text-align: center;
+}
+#ref tr.even {
+    BACKGROUND-COLOR: #f5f5f5;
+}
+#ref tr.odd {
+    BACKGROUND-COLOR: #d3d3d3;
+}

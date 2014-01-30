@@ -1,0 +1,92 @@
+#edit_form,#view {
+    BORDER: 0px; color: #708090; width: 600px; PADDING: 3px; BACKGROUND: #f9f9f9; margin: 3px auto;
+}
+#edit_form td.head {
+    text-align: center; font-weight: bold;
+}
+#edit_form A {
+    font-weight: bold; text-decoration: none; color: #708090;
+}
+#edit_form input.proc2_days {
+    width: 20px;
+}
+#edit_form select.exid {
+    width: 250px;
+}
+#edit_form td.upref {
+    BORDER: gray 1px solid; font-weight: bold;
+}
+#edit_form table.head {
+    text-align: center;
+}
+#edit_form INPUT.name {
+    width: 250px;
+}
+#edit_form .refs {
+	margin-top: 30px; border: 0px; width: 498px; margin-left: 42px;
+}
+/* ================================================ */
+#edit_form .left {
+    float: left; width: 239px; margin: 3px; padding: 2px; text-align: center; border: 0px;
+}
+#edit_form table.docs {
+    width: 238px; padding: 0px; border-collapse: collapse; 
+}
+#edit_form table.docs TD {
+    BORDER: gray 1px solid;
+}
+#edit_form fieldset {
+    BORDER: #483d8b 2px solid; margin: 3px; padding: 3px; font-size: 1em; color: #483d8b;
+}
+#edit_form fieldset legend {
+    font-weight: bolder;
+}
+#edit_form p {
+    BORDER: 0px; margin: 1px; padding: 1px 1px 1px 10px; text-align: left;
+}
+#edit_form label {
+    BORDER: 0px; text-align: left; width: 160px; display: block; float: left; padding: 1px 1px 1px 10px;
+}
+#edit_form fieldset input, #edit_form fieldset select {
+    width: 150px; background: #fcfcfc; color: #483d8b; border: 1px #483d8b solid;
+}
+#edit_form fieldset input[type="file"] {
+    width: 200px;
+}
+#edit_form fieldset input[type="checkbox"] {
+    width: 15px; border: 0px;
+}
+#edit_form fieldset select.lang {
+    width: 40px;
+}
+#edit_form fieldset button {
+     border: 1px #483d8b solid; PADDING: 2px; background: #f0f0f0; margin-left: 2px; color: #483d8b;
+}
+#edit_form fieldset button[type="submit"] {
+    display: block; width: 100px; float: right; margin-right: 255px;
+}
+#edit_form fieldset div.error { display: none; }
+#edit_form fieldset select.error, #edit_form fieldset input.error { background-color: #ff6666; }
+#edit_form fieldset label.error { margin-left: 170px; display: block; color: #ff6666; width: 300px; font-size: 0.9em; }
+/* ============= receivers list =============== */
+#rid_list {
+	border: 1px #483d8b solid; padding: 3px; margin: 20px; width: 550px;  position: absolute; right: 20px; top: 30px; BACKGROUND: #f9f9f9; color: #483d8b;
+}
+#rid_list ul {
+	margin-left: 0px; list-style-type: none; padding: 0px; margin-top: 10px; float: left;
+}
+#rid_list #close_link {
+	float: right; margin: 2px 10px 0px 10px; text-decoration: none; font-weight: bolder;
+}
+#rid_list #save_link {
+	float: left; margin: 2px 2px 10px 220px; text-decoration: none; font-weight: bolder;
+}
+#edit_form ul.rids {
+	margin-left: 175px; list-style-type: none; margin-top: 0px;
+}
+.rids_li {
+display: block; border: 1px #483d8b solid; margin: 0px 2px 2px 10px; padding: 2px; width: 150px;
+}
+#rid_list li {
+	display: block; border: 1px #483d8b solid; margin: 2px; padding: 2px; width: 120px; 
+}

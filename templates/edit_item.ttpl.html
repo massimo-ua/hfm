@@ -1,0 +1,48 @@
+{% extends "main.ttpl.html" %}
+
+{% block content %}
+<div id="edit">
+<form id="validForm" action="" enctype="multipart/form-data" method="post">
+<p class="head">{{page_title}}</p>
+{% for k,i in form %}
+<p>{% if i.type != 'hidden' %}<span>{{i.help_text}}</span>:{% endif %}
+{% if i.type == 'text' %}
+<input {% if i.id %}id="{{i.id}}"{% endif %} {% if i.class %}class="{{i.class}}"{% endif %} type="{{i.type}}" {% if i.name %}name="{{i.name}}"{% endif %} value="{% if i.value %}{{i.value}}{% endif %}" />
+{% elseif i.type == 'select' %}
+<select {% if i.id %}id="{{i.id}}"{% endif %} {% if i.name %}name="{{i.name}}"{% endif %}{% if i.disabled %} disabled="disabled"{% endif %} {% if i.readonly %} readonly="readonly"{% endif %}>
+<option value="" {% if i.value is not defined %}selected{% endif %}>{{choose}}</option>
+{% for si in i.loop %}
+<option value="{{si.value}}" {% if i.value and i.value == si.value %}selected{% endif %}>{{si.text}}</option>
+{% endfor %}
+</select>
+{% elseif i.type == 'hidden' and i.value is defined %}
+<input type="{{i.type}}" {% if i.id %}id="{{i.id}}"{% endif %} {% if i.name %}name="{{i.name}}"{% endif %} value="{{i.value}}" />
+{% elseif i.type == 'file' %}
+<input {% if i.id %}id="{{i.id}}"{% endif %} type="file" {% if i.name %}name="{{i.name}}"{% endif %} {% if i.method %}method="{{i.method}}"{% endif %}{% if i.multiple %} multiple{% endif %}>
+<div id="progress"><div class="bar" style="width: 0%;"></div></div>
+<div id="fileplaceholder">
+{% if i.loop %}
+{% for f in i.loop %}
+<p class="file_{{f.value}}">
+<span class="file">
+<input type="hidden" name="files[]" value="{{f.value}}">
+<a href="{{constant('WR')}}get/file/{{f.value}}">{{f.text}}</a>
+</span>
+<button class="fileremove" text="{{f.value}}">{{remove}}</button>
+</p>
+{% endfor %}
+{% endif %}
+</div>
+{% elseif i.type == 'checkbox' %}
+<input type="{{i.type}}" {% if i.id %}id="{{i.id}}"{% endif %} {% if i.class %}class="{{i.class}}"{% endif %} {% if i.name %}name="{{i.name}}"{% endif %} value="{% if i.value %}{{i.value}}{% endif %}" {% if i.value %}checked{% endif %}/>
+{% elseif i.type == 'textarea' %}
+<textarea {% if i.id %}id="{{i.id}}"{% endif %} {% if i.class %}class="{{i.class}}"{% endif %} {% if i.name %}name="{{i.name}}"{% endif %}>{% if i.value %}{{i.value}}{% endif %}</textarea>
+{% endif %}
+</p>
+{% endfor %}
+<p class="centered">
+<input class="button" type="submit" value="{{submit}}" />
+</p>
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+	<link rel="shortcut icon" href="{{constant('WR')}}favicon.ico" type="image/x-icon">
+	<link rel="icon" href="{{constant('WR')}}favicon.ico" type="image/x-icon">
+	<meta http-equiv="content-type" content="text/html" charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="{{constant('WR')}}css/style.css">
+    {% if jq %}
+    <script type="text/javascript" src="{{constant('WR')}}java/jquery/jquery-1.9.1.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{constant('WR')}}java/jquery/themes/jquery-ui-1.10.2.custom.css">
+    {% endif %}
+    {%if datepicker %}
+    <script type="text/javascript" src="{{constant('WR')}}java/jquery/jquery-ui-1.10.2.custom.js"></script>
+    {% endif %}
+    {% if validator %}
+     <script type="text/javascript" src="{{constant('WR')}}java/jquery/jquery.validate.min.js"></script>
+    {% endif %}
+    {% if calculator %}
+     <script type="text/javascript" src="{{constant('WR')}}java/jquery/jquery.calculator.js"></script>
+     <script type="text/javascript" src="{{constant('WR')}}java/jquery/jquery.calculator-uk.js"></script>
+     <link rel="stylesheet" type="text/css" href="{{constant('WR')}}css/jquery.calculator.css">
+    {% endif %}
+    {% if amcharts %}
+    <link rel="stylesheet" type="text/css" href="{{constant('WR')}}css/amcharts.css">
+    <script type="text/javascript" src="{{constant('WR')}}java/amcharts/amcharts.js"></script>
+    {% endif %}
+    {% if jtable %}
+    <link rel="stylesheet" type="text/css" href="{{constant('WR')}}css/jtable.css">
+    <script type="text/javascript" src="{{constant('WR')}}java/jquery/jquery.dataTables.js"></script>
+    {% endif %}
+    {% if fileupload %}
+    <script src="{{constant('WR')}}java/jquery/jquery.ui.widget.js"></script>
+    <script src="{{constant('WR')}}java/jquery/jquery.iframe-transport.js"></script>
+    <script src="{{constant('WR')}}java/jquery/jquery.fileupload.js"></script>
+    {% endif %}

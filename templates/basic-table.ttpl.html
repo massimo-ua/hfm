@@ -1,0 +1,43 @@
+{% extends "main.ttpl.html" %}
+{% block content %}
+<div id="body" {% if t_fixed %}class="centered"{% endif %}>
+<div>
+<div class="submenu">
+{% if years %}{{years_title}}{% for i in years %}{% if i.year == dy %}<span class="dy">{{i.year}}</span>{% else %}<a class="years" href="{{constant('WR')}}{{current_controller}}/?y={{i.year}}">{{i.year}}</a>{% endif %}{% endfor %}{% endif %}
+</div>
+<table id="jtable">
+<thead>
+<tr class="header">{% if __controls is defined %}<th><a style="float: left" href="{{ attribute(__controls, 100).href }}{% if attribute(__controls, 100).id %}/{{ i._id }}{% endif %}" title="{{ attribute(__controls, 100).title }}"><img src="{{ constant('PIC_PATH') }}{{ attribute(__controls, 100).icon }}" ></a></th>{% endif %}{% for i in th %}<th>{{ i }}&nbsp;&nbsp;&nbsp;</th>{% endfor %}</tr>
+</thead>
+<tbody>
+{% set totalColumns = 0 %}
+{% for i in data %}
+<tr>
+{% if loop.first %}
+{% set totalColumns = i|length - __hide|length %}
+{% endif %}
+{% if __controls is defined %}<td class="controls" NOWRAP>{% include '__controls.ttpl.html' %}</td>{% endif %}
+{% for k,ii in i if __hide is not defined or k not in __hide %}
+<td>
+{% if k == 'item' and i.item_url %}
+<a href="{{constant('WR')}}{{i.item_url}}" title="{{details}}">{{ii}}</a>
+{% else %}
+{% if __bolder is defined and k in __bolder %}<b>{{ii}}</b>{% else %}{{ii}}{% endif %}
+{% endif %}
+</td>
+{% endfor %}
+</tr>
+{% endfor %}
+</tbody>
+{% if jtable_totals is defined %}
+<tfoot>
+<tr>
+<th style="text-align:right" colspan="{% if __controls is defined %}{{totalColumns}}{% else %}{{ totalColumns-1 }}{% endif %}">{{total_text}}:</th>
+<th></th>
+</tr>
+</tfoot>
+{% endif %}
+</table>
+</div>
+</div>
+{% endblock %}

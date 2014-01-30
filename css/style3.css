@@ -1,0 +1,266 @@
+@import "editform.css";
+@import "ref.css";
+@import "view.css";
+A.nav {
+	display: block; border: #483d8b 1px solid; padding: 1px; margin: 5px; width: 60px; 
+}
+BODY {
+	FONT-SIZE: 80%; COLOR: #000; FONT-FAMILY: Trebuchet MS, Arial, Verdana, Helvetica, sans-serif
+}
+BODY {
+	BORDER: 0px; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: #fffffc; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+img {
+    border: 0px;
+}
+.centered {
+	text-align: center;
+}
+#body div.act_style {
+	float: right;
+}
+#body button.act_style {
+	border: 1px #483d8b solid; PADDING: 1px; background: #f0f0f0; margin-bottom: 3px; color: #483d8b; display: inline;
+}
+#body select.act_style {
+	border: 1px #483d8b solid; PADDING: 2px; width: 150px; background: #f0f0f0; margin-right: 5px; color: #483d8b; display: inline;
+}
+#info {
+    BORDER: #b0c4de 1px solid; height: 32px; width: 99%; PADDING: 3px; BACKGROUND: #eef3f9; MARGIN: 3px; color: #483d8b; 
+}
+#info td {
+    vertical-align: middle; padding: 0px; margin: 2px;
+}
+#info a {
+    color: #000000; text-decoration: none;
+}
+#info .button {
+    background: #b0c4de; border-bottom: #483d8b 2px; border-right: #483d8b 2px; padding-left: 5px; padding-right: 5px;
+}
+#h_menu {
+    BORDER: #b0c4de 1px solid; height: 20px; width: 99%; PADDING-RIGHT: 3px; PADDING-LEFT: 3px; BACKGROUND: #eef3f9; PADDING-BOTTOM: 3px; MARGIN: 3px; PADDING-TOP: 3px
+}
+#search_bar {
+    BORDER: #b0c4de 1px solid; width: 99%; PADDING-RIGHT: 3px; PADDING-LEFT: 3px; BACKGROUND: #eef3f9; PADDING-BOTTOM: 3px; MARGIN: 3px; PADDING-TOP: 3px
+}
+#search_bar .searchbutton {
+    background-image: url(/pics/search.png); background-color: #eef3f9; border: 0px; height: 24px; width: 24px;
+}
+#search_bar input,select {
+    background: #f5f5f5; border-bottom: #b0c4e1 1px; border-right: #b0c4e1 1px; padding-left: 3px; padding-right: 3px; border-left: 1px; border-top: 1px; width: auto; margin: 3px; width: 100px;
+}
+#search_bar .select, #edit_form .select {
+	BACKGROUND: #fffffc; width: 145px; color: #483d8b; font-weight: normal;
+}
+#search_bar .select option {
+	BACKGROUND: #fffffc; border: 1px red solid; color: #483d8b; display: block;
+}
+#search_bar table {
+    width: 100%; BORDER: gray 0px double; border-collapse: collapse;
+}
+#search_bar td {
+    BORDER: 0px; vertical-align: middle; text-align: center; 
+}
+#search_bar tr.even {
+    background:  #eef3f9; text-align: center; font-weight: bold; vertical-align: middle; 
+}
+#search_bar tr.odd {
+    background: #EDECF8;
+}
+#body {
+    BORDER: #b0c4de 1px solid; height: auto; width: 99%; PADDING-RIGHT: 3px; PADDING-LEFT: 3px; BACKGROUND: #eef3f9; PADDING-BOTTOM: 3px; MARGIN: 3px; PADDING-TOP: 3px
+}
+#body table {
+    width: 100%; BORDER: gray 1px solid; border-collapse: collapse; margin: 1px;
+}
+#body a {
+    text-decoration: none; color: black;
+}
+#body thead tr {
+    height: 15px;
+}
+#body th {
+    BORDER: gray 1px ridge; padding: 4px 20px 4px 4px; MARGIN: 0px; BACKGROUND-COLOR: #f5f5f5;
+}
+#body td {
+    BORDER: gray 1px ridge; PADDING: 4px; MARGIN: 0px;
+}
+#body td.pg {
+    BORDER: gray 1px ridge; PADDING: 1px; MARGIN: 1px; font-weight: normal; 
+}
+#body a.pg {
+    text-decoration: none; color: black; padding-left: 5px; padding-right: 5px;
+}
+#body td.selected_pg {
+    BORDER: 0px; PADDING: 1px; MARGIN: 1px; font-weight: bolder; color: black; padding-left: 5px; padding-right: 5px;
+}
+#body tr.even {
+    BACKGROUND-COLOR: #f5f5f5;
+}
+#body tr.odd {
+    BACKGROUND-COLOR: #eaeaea;
+}
+#body tr.gold {
+    BACKGROUND-COLOR: #EBE7A9;
+}
+#body tr.pages {
+    BORDER: gray 1px solid; BACKGROUND-COLOR: #f5f5f5; height: 15px; text-decoration: none;
+}
+#body table thead tr .header {
+	background-image: url(/pics/bg000000.gif);
+    BORDER: gray 1px ridge;
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+}
+#body table thead tr .headerSortUp {
+	background-image: url(/pics/asc00000.gif);
+}
+#body table thead tr .headerSortDown {
+	background-image: url(/pics/desc0000.gif);
+}
+#body table thead tr .headerSortDown, #body table thead tr .headerSortUp {
+background-color: #d0d0d0;
+}
+#body table.pages {
+    BORDER: 0px; BACKGROUND-COLOR: #f5f5f5; margin-top: 2px; width: auto; border-collapse: separate;
+}
+#body #CS { font-weight: bolder; font-size: 11px; color: green;}
+#body #AS { font-weight: bolder; font-size: 12px; color: red;}
+#body #OS { font-weight: normal; font-size: 13px; color: grey; text-decoration: line-through;}
+#body .head {
+    text-align: left; font-weight: bolder; border: 0px; margin-bottom: 2px; margin-top: 2px; 
+}
+#body .header {
+    text-align: left; BACKGROUND: #f5f5f5; font-weight: bolder; border: 0px; margin: 0px;
+}
+/* ================================================ */
+#body td.center_b {
+	text-align: center; font-weight: bold;
+}
+/* ================================================ */
+#footer {
+    CLEAR: both; vertical-align: middle; BORDER: gray 1px solid; color: #708090; font-size: 12px; text-align: center; height: 20px; width: 99%; PADDING-RIGHT: 3px; PADDING-LEFT: 3px; BACKGROUND: #f5f5f5; PADDING-BOTTOM: 3px; MARGIN: 3px; PADDING-TOP: 3px;
+}
+#lang {
+	position: absolute; right: 10px; top: 10px; border: 0px; padding: 2px;
+}
+#lang img {
+    border: 1px #708090 solid; margin: 0px 2px 2px 0px;
+}
+#lang img.curr_lang {
+    border: 2px #8090a0 solid; margin: 0px 0px 0px 0px;
+}
+#clear {
+	clear: both;
+}
+#login_form {
+    BORDER: 0px; color: #708090; width: 220px; PADDING: 3px; margin:0 auto;
+}
+#login_form TD {
+    color: #708090; PADDING: 1px; text-align: left;
+}
+#login_form fieldset {
+    border: 2px #708090 solid; PADDING: 2px;
+}
+#login_form button {
+    border: 1px #708090 solid; PADDING: 2px; background: #f0f0f0;
+}
+#login_form .head {
+    text-align: center; font-weight: bold;
+}
+#clear {
+	clear: both;
+}
+/* ================================================ */
+#tool_bar {
+    BORDER: #b0c4de 1px solid; width: 99%; PADDING-RIGHT: 3px; PADDING-LEFT: 3px; BACKGROUND: #eef3f9; PADDING-BOTTOM: 3px; MARGIN: 3px; PADDING-TOP: 3px; color: #483d8b;
+}
+#tool_bar  A.ntc {
+	 color: #ff0000;
+}
+#tool_bar  A.ntc-rip {
+	 color: #404040;
+}
+#tool_bar A {
+	display: inline-block; MARGIN: 0px;  font-weight: bolder; text-decoration: none; color: #483d8b; padding-left: 1px; padding-right: 1px;
+}
+#rights {
+    MARGIN: 2px;
+}
+#rights table {
+    BORDER: gray 1px dashed;  WIDTH: 100%; border-collapse: collapse; background: #fffffc; 
+}
+#rights tr.header {
+    BORDER: gray 1px solid; text-align: center; font-weight: bold;
+}
+#rights td {
+    BORDER: gray 1px dashed; text-align: center; 
+}
+#rights td.name {
+    text-align: left; padding-left: 3px; 
+}
+#rights a.exit {
+    color: #708090; text-decoration: none;
+}
+#ed_ref {
+    margin: 0 auto; BACKGROUND: #eef3f9; width: 55%; BORDER: gray 1px solid; margin-top: 3px; margin-bottom: 3px; padding: 3px;
+}
+#ed_ref table {
+    width: 100%; BORDER: gray 1px ridge; border-collapse: collapse; background: #fffffc;
+}
+#ed_ref td {
+    BORDER: gray 1px solid; color: #00003f; padding: 4px; 
+} 
+#ed_ref td.head {
+    background: #f5f5f5; text-align: center; font-weight: bold; 
+}
+#ed_ref tr.head2 {
+    text-align: center;
+}
+#ed_ref tr.even {
+    BACKGROUND-COLOR: #f5f5f5;
+}
+#ed_ref td.warning {
+    BACKGROUND-COLOR: #fffffc; font-weight: normal; text-align: center; color: red;
+}
+#rpt {
+    FONT-SIZE: 90%; width: 700px; COLOR: #000; FONT-FAMILY: Arial, Verdana, Helvetica, sans-serif; margin:0 auto; 
+}
+#rpt table {
+    width: 100%; BORDER: 0px; border-collapse: collapse; background: #fffffc;
+}
+#rpt td {
+    BORDER: black 1px ridge; padding: 4px;
+}
+#rpt td.centerb {
+    text-align: center; font-weight: bold; BORDER: 0px; 
+}
+#rpt td.center {
+    text-align: center; 
+}
+#rpt td.left {
+    text-align: left; font-weight: bold; padding-left: 1px;
+}
+#rpt td.right {
+    text-align: right; font-weight: bold; padding-right: 1px;
+}
+#rpt A {
+    text-decoration: none; font-weight: bold; color: black;
+}
+#rpt tr.table_h {
+    font-weight: bold; text-align: center;
+}
+/* ============ jQuery Autocomplete ========================== */
+.ui-autocomplete {
+		max-height: 100px;
+		overflow-y: auto;
+		/* prevent horizontal scrollbar */
+		overflow-x: hidden;
+		/* add padding to account for vertical scrollbar */
+		padding-right: 20px;
+	}
+/* IE 6 doesn't support max-height we use height instead, but this forces the menu to always be this tall*/
+* html .ui-autocomplete {
+		height: 100px;
+}

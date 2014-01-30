@@ -1,0 +1,31 @@
+{% extends "main.ttpl.html" %}
+
+{% block content %}
+<div id="reports">
+{% for k,i in form %}
+<div class="report-control">
+ <form action="{{constant('WR')}}{{current_controller}}/show/" method="GET">
+<input type="hidden" name="id" value="{{k}}" />
+  <fieldset>
+  {% if i.name %}<legend>{{i.name}}</legend>{% endif %}
+   {% if i.controls %}
+   {% for l in i.controls %}
+      <div class="left">
+      {% if l.type and (l.type == 'radio' or l.type == 'checkbox') %}
+      {% for v in l.loop %}
+      <p><input type="{{l.type}}" {% if l.id %}id="{{l.id}}"{% endif %} {% if l.name %}name="{{l.name}}"{% endif %} {% if v.value %}value="{{v.value}}"{% endif %} {% if v.checked %}CHECKED{% endif %}/>{% if v.text %}{{v.text}}{% endif %}</p>
+      {% endfor %}
+      {% endif %}
+      </div>
+   {% endfor %}
+   <div class="left">
+   <p><input class="button" type="submit" value="{{submit}}"></p>
+   </div>
+   {% endif %}
+   </fieldset>
+   </form>
+   <div class="clear"></div>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

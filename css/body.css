@@ -1,0 +1,57 @@
+#body a.nav {
+    text-decoration: none; color: #505050; margin: 2px;
+}
+#body span.current {
+    display: block-inline; border: 1px solid #505050; padding: 1px 3px 1px 3px;
+}
+#body table {
+    width: 100%; border-collapse: separate; border-spacing: 2px;
+}
+#body table th, td {
+    border: 1px solid #505050;
+}
+#body thead {
+    background: #303030; color: #f0f0f0;
+}
+#body tbody tr.even {
+    background: #f0f0f0;
+}
+#body tbody tr.odd {
+    background: #d5d5d5;
+}
+#body tbody tr:hover {
+    background: #959595 !important; color: #f0f0f0 !important;
+}
+#body tbody tr:hover a {
+    color: #f0f0f0;
+}
+#body tbody td.minus {
+    color: red;
+}
+#body tbody td.plus {
+    color: green;
+}
+#body select.act_selector {
+    background: #d5d5d5; color: #505050; border: 1px solid #505050; width: 150px; margin-left: 2px;
+}
+#body input.button {
+    background: #303030; color: #f0f0f0; font-weight: bolder; width: 100px; border: 0px;
+}
+#body.centered {
+    width: 800px; margin: 2px auto;
+}
+#body .taction_block {
+    margin: 20px 0px 0px 0px;
+}
+#body td.controls {
+    border: 0px; text-align: right;
+}
+#body div.submenu {
+    margin: 2px; padding: 1px;
+}
+#body span.dy {
+    margin: 0px 2px 0px 2px; font-weight: bolder; font-size: 1.1em; display: inline-block; border: 1px #505050 solid; padding: 0px 2px 0px 2px;
+}
+#body a.years {
+    margin: 0px 2px 0px 2px; font-size: 1em; text-decoration: none;
+}

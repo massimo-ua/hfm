@@ -1,0 +1,3 @@
+{% for __k,__i in __controls %}
+{% if __k < 100 %}<a href="{{__i.href}}{% if __i.id %}/{{i._id}}{% endif %}" title="{{__i.title}}"><img src="{{ constant('PIC_PATH') }}{{ __i.icon }}" ></a>{% endif %}
+{% endfor %}

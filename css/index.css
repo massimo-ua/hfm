@@ -1,0 +1,42 @@
+#homepage div.links {
+    width: 204px;
+    padding: 2px;
+    margin: 2px;
+    float: left;
+}
+#homepage div.сrates {
+    width: 300px;
+    padding: 2px;
+    margin: 2px 2px 2px 16px;
+    float: left;
+}
+#homepage div.ipayments {
+    width: 200px;
+    padding: 2px;
+    margin: 2px 2px 2px 16px;
+    font-weight: normal;
+    float: left;
+}
+#homepage div.ipayments ul
+{
+list-style-type: none;
+padding: 0px;
+margin: 0px;
+}
+div.ipayments ul li.checked
+{
+background-image: url(../pics/checked.png);
+background-repeat: no-repeat; 
+height: 24px;
+padding-left: 32px; 
+}
+div.ipayments ul li.wait
+{
+background-image: url(../pics/wait.png);
+background-repeat: no-repeat;
+height: 24px;
+padding-left: 32px; 
+}
+#homepage input.home-url {
+    background: #303030; color: #f0f0f0; font-weight: bolder; width: 200px; border: 0px; text-align: left; padding: 0 2px 0 5px;
+}

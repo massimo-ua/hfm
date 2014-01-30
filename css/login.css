@@ -1,0 +1,17 @@
+#login {
+    width: 250px;
+    padding: 5px;
+    margin: auto;
+}
+#login table {
+    border: 0px; width: 100%;
+}
+#login thead {
+    background: #303030; color: #f0f0f0; font-weight: bolder;
+}
+#login tbody td {
+    border: 0px; text-align: center;
+}
+#login tbody input.button {
+    background: #303030; color: #f0f0f0; font-weight: bolder; width: 100px; border: 0px;
+}

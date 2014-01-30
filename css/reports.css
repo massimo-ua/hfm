@@ -1,0 +1,9 @@
+#placeholder {
+    margin: 0px auto;
+}
+#reports input.button {
+    background: #303030; color: #f0f0f0; font-weight: bolder; width: 100px; border: 0px;
+}
+#reports div.left {
+    float:left; width: 70px;
+}

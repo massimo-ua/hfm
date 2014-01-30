@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{{page_title}}{% endblock %}</title>
+        {% block meta %}
+        {% include 'meta.ttpl.html' %}
+        {% endblock %}
+        {% block script %}
+        {% include 'script.ttpl.html' %}
+        {% endblock %}
+    </head>
+    <body>
+        {% block main_menu %}
+        {% if session.uid %}
+        {% include 'main_menu.ttpl.html' %}
+        {% endif %}
+        {% endblock %}
+        {% block content %}{% endblock %}
+        <div id="footer">
+            {% block footer %}
+               <center> &copy; Copyright 2011-{{ "now"|date("Y") }} by <a href="http://www.acl.pp.ua/" target="_blank">grishkov.m</a> </center>
+            {% endblock %}
+        </div>
+    </body>
+</html>

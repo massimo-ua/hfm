@@ -1,0 +1,61 @@
+#view {
+	width: 99%;
+}
+#view table {
+	width: 100%; border: 0px; border-collapse: collapse; color: black;
+}
+#view table td {
+	border: 1px #303030 solid; padding: 2px;
+}
+#view .normal {
+	font-weight: normal; text-decoration: none;
+}
+
+#view table td.head {
+	border: 0px; text-align: center; font-weight: bolder;
+}
+#view fieldset {
+	color: black; font-weight: bolder; border: 1px black solid; padding: 5px;
+}
+#view fieldset.smallblock {
+	margin-left: 10px; float: left;
+}
+#view fieldset.footerblock {
+	margin: 3px auto; width: 362px;
+}
+#view .left {
+	float: left; width: 310px;
+}
+#view .right {
+	margin-left: 320px;
+}
+#view li {
+	font-weight: normal; text-decoration: none; display: block; list-style: none; margin-left: 3px; padding: 2px; border-bottom: 1px #505050 dashed;
+
+}
+#view li.cmt_header {
+	margin-left: 0px; border: 0px; font-weight: lighter; font-style: oblique;
+}
+#view li.cmt_body {
+	margin-left: 10px; border-bottom: 1px #505050 solid; font-weight: normal; font-style: italic;
+}
+#view ul {
+	margin: 0 auto;
+}
+#view ul.h_list li{
+    text-align: left;
+    float: left;
+    list-style: none;
+    padding: 3px 10px 3px 10px;
+    margin: 3px;
+    border: 1px solid #909090;
+}
+#view ul.h_list li:hover {
+    background-color: #e5e5e5;
+}
+#view li.rids {
+border-bottom: 1px #505050 dashed; margin: 1px 1px 1px 77px;
+}
+#view button.big_square {
+	width: 70px; height: 53px; margin: 1px 1px 1px 5px; display: inline;
+}

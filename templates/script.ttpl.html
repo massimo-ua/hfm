@@ -1,0 +1,364 @@
+
+<script type="text/javascript" charset="utf-8">
+{% if jq and (catcallback == 1 or rootcatcallback == 1 or fileupload or validator or rate_updater == 1 or search_form == 1 or jtable == 1) %}
+$(document).ready(function() {
+        {% if jtable %}
+        $('#jtable').dataTable( {
+        {% if __sorting %}"aaSorting": [{% for k,i in __sorting %}[{{k}},"{{i|lower}}"]{% if not loop.last %},{% endif %}{% endfor %}],{% endif %}
+        "sPaginationType": "full_numbers",
+        "oLanguage": {
+        "sUrl": "{{constant('WR')}}lib/lang/ua_UK.dataTables.txt"
+        }
+        {% if jtable_totals %}
+        ,"fnFooterCallback": function ( nRow, aaData, iStart, iEnd, aiDisplay ) {
+			/*
+			 * Calculate the total market share for all browsers in this table (ie inc. outside
+			 * the pagination)
+			 */
+			var iTotalS = 0;
+			for ( var i=0 ; i<aaData.length ; i++ )
+			{
+				iTotalS += aaData[i][5]*1;
+			}
+			/* Calculate the market share for browsers on this page */
+			var iPageS = 0;
+			for ( var i=iStart ; i<iEnd ; i++ )
+			{
+				iPageS += aaData[ aiDisplay[i] ][5]*1;
+			}
+			
+			/* Modify the footer row to match what we want */
+			var nCells = nRow.getElementsByTagName('th');
+			nCells[1].innerHTML = parseInt(iPageS*100)/100;
+		}
+        {% endif %}
+        }); 
+        {% endif %}
+        {% if validator %}
+        $("#validForm").validate({
+            onkeyup: false,
+            onclick: false,
+            rules: { 
+                {% for i in validator %}
+                {{i.field}} : { required : true {% if i.option %}, {{ i.option }}{% endif %} } {% if not loop.last %},{% endif %}
+                {% endfor %}
+            },
+            messages: { 
+            {% for i in validator %}    
+			{{i.field}}: { required: "{{i.error}}" }{% if not loop.last %},{% endif %}
+            {% endfor %}
+		    }
+        });
+        {% endif %}
+        {% if fileupload %}
+    $('#fileupload').fileupload({
+        dataType: 'json',
+        add: function (e, data) {
+            var tid = $("#_id").val();
+            $.each(data.files, function (index, file) {
+                data.url = "{{constant('WR')}}get/fileupload/"+tid;
+                data.submit();
+            });
+        },
+        done: function (e, data) {
+            $.each(data.result.files, function (index, file) {
+                data.url = "{{constant('WR')}}get/fileremove/"+file._id;
+                data.context = $('<p/>').html('<span class="file" style="width:230px;display:inline-block"><input type="hidden" name=files[] value="'+file._id+'"><a href="{{constant("WR")}}get/file/'+file._id+'">'+file.name+'</a></span>').addClass('file_'+file._id).appendTo($('div#fileplaceholder'));
+                data.context = $('.file_'+file._id).append($('<button/>').text("{{remove}}").css({'display':'inline-block'}).click(function () {
+                    $(this).remove();
+                    $('.file_'+file._id).remove();
+                    data.submit();
+                }));
+                });
+        },
+        //error: function(XMLHttpRequest, textStatus, errorThrown) {
+        //        alert(textStatus);
+        //},
+        progressall: function (e, data) {
+        var progress = parseInt(data.loaded / data.total * 100, 10);
+        $('#progress .bar').css(
+            'width',
+            progress + '%'
+        );
+    }
+    });
+    $('button.fileremove').click(function(e) {
+    e.preventDefault();
+    var file_id = $(this).attr('text');
+        $.ajax({
+            type: "GET",
+			url: "{{constant('WR')}}get/fileremove/"+file_id,
+			cache: false,
+			success: function(){
+                    $('.file_'+file_id).remove();
+            }
+            });
+        });
+        {% endif %}
+        {% if rate_updater == 1 %}
+        $("#rate_updater").click(function() {
+            var home_currency = $("td.home").text();
+            $("td.code").each(function() {
+					var codename = $(this).html();
+					$.ajax({ type: "POST",
+                        url: "{{constant('WR')}}?obj=8",
+                        data: { t: 4, c1: codename, c2: home_currency },
+                        success : function(responce) {
+						  if(responce != '') {
+                            var sid = "td."+codename;
+                            $(sid).text(responce);
+                            }
+                            else return;
+                        }
+                    });
+					
+			});
+        });
+        {% endif %}
+        {% if search_form == 1 %}
+        $(".search_form").hide();
+        $("#show_search_form").click(function () {
+			$(".search_form").show(500);
+		});
+		$("#hide_search_form").click(function () {
+			$(".search_form").hide(500);
+		});
+        {% endif %}
+        {% if rootcatcallback == 1 %}
+    $("#type").change(function() {
+        var selected = $("option:selected",this).val();
+        $("#parent_id").children().remove().end().append("<option value=\"\">{{ch_category}}</option>");
+        if(selected == "") return;
+        if(selected == "1" || selected == "2") {
+        $.ajax({
+			type: "POST",
+			url: "{{constant('WR')}}get/data",
+			data: { t: 3, id: selected },
+            dataType: 'json',
+			cache: false,
+			success: function(responce){ 
+            var newoptions = "";
+            for(var i=0; i<responce.length; i++) {
+                newoptions += "<option value=\"" + responce[i]._id + "\">" + responce[i].name + "</option>";
+            }
+            $("#parent_id").children().end().append(newoptions);
+            }});
+        }
+    });
+        {% endif %}
+        {% if catcallback == 1 %}
+    //first, detect when initial DD changes
+    var ival = $("#type").val();
+    if(ival == "1" || ival == "2") {
+        $.ajax({
+			type: "POST",
+			url: "{{constant('WR')}}get/data",
+			data: { t: 1, id: ival },
+            dataType: 'json',
+			cache: false,
+			success: function(responce){
+            var newoptions = "";
+            for(var i=0; i<responce.length; i++) {
+                //In our result, ID is what we will use for the value, and NAME for the label
+                newoptions += "<option value=\"" + responce[i]._id + "\">" + responce[i].name + "</option>";
+            }
+            $("#category_id").children().end().append(newoptions);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert(textStatus);
+            }
+            });
+        }
+    if($("#type option:selected").val() == "3") {
+            if (!$("#category_id").is(':disabled')){
+                $("#category_id").attr('disabled', 'disabled');
+            }
+    }
+    $("#type").change(function() {
+        //get what they selected
+        var selected = $("option:selected",this).val();
+        //no matter what, clear the other DD
+        //Tip taken from: http://stackoverflow.com/questions/47824/using-core-jquery-how-do-you-remove-all-the-options-of-a-select-box-then-add-on
+        if(selected != "3") {
+            if ($("#category_id").is(':disabled')){
+                $("#category_id").removeAttr('disabled');
+            }
+            if (!$("#mirror_account_id").is(':disabled')){
+                $("#mirror_account_id").attr('disabled', 'disabled');
+            }
+            $("#category_id").children().remove().end().append("<option value=\"\">{{ch_category}}</option>");
+        }
+        else {
+            if (!$("#category_id").is(':disabled')){
+                $("#category_id").attr('disabled', 'disabled');
+            }
+            if ($("#mirror_account_id").is(':disabled')){
+                $("#mirror_account_id").removeAttr('disabled');
+            }
+        }
+        //now load in new options if I picked a state
+        if(selected == "") return;
+        if(selected != "3") {
+        $.ajax({
+			type: "POST",
+			url: "{{constant('WR')}}get/data",
+			data: { t: 1, id: selected },
+            dataType: 'json',
+			cache: false,
+			success: function(responce){
+            var newoptions = "";
+            for(var i=0; i<responce.length; i++) {
+                //In our result, ID is what we will use for the value, and NAME for the label
+                newoptions += "<option value=\"" + responce[i]._id + "\">" + responce[i].name + "</option>";
+            }
+            $("#category_id").children().end().append(newoptions);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert(textStatus);
+            }
+            });
+        }
+    });
+    $("#account_id").change(function() {
+        if ($("#mirror_account_id").is('[readonly="readonly"]')) return;
+        if ($("#mirror_account_id").is(':disabled')) return;
+        else {
+            var selected = $("option:selected",this).val();
+            $("#mirror_account_id").children().remove().end().append("<option value=\"\">{{ch_account}}</option>");
+            $.ajax({
+			type: "POST",
+			url: "{{constant('WR')}}get/data",
+			data: { t: 2, id: selected },
+            dataType: 'json',
+			cache: false,
+			success: function(responce){ 
+            var newoptions = "";
+            for(var i=0; i<responce.length; i++) {
+                //In our result, ID is what we will use for the value, and NAME for the label
+                newoptions += "<option value=\"" + responce[i]._id + "\">" + responce[i].name + "</option>";
+            }
+            $("#mirror_account_id").children().end().append(newoptions);
+            }});
+        }
+    });
+    {% endif %}
+});
+{% endif %}
+{% if datepicker == 1 or calculator == 1 or amcharts == 1 %}
+    $(function() {
+            {% if datepicker == 1 %}
+    		$(".date").datepicker({
+			dateFormat: 'yy-mm-dd',
+			changeYear: true,
+			showOn: 'both',
+			buttonText: '...',
+			dayNamesMin: [
+			{% for i in days_n %}"{{i}}"{% if not loop.last%},{% endif %}{% endfor %}
+			],
+			monthNames: [
+			{% for i in months %}"{{i}}"{% if not loop.last%},{% endif %}{% endfor %}
+			],
+			firstDay: {{first_d}},
+            clickInput:true
+			 });
+{% endif %}
+             {% if calculator == 1 %}
+             $('#amount').calculator({
+                showOn:'focus',
+                onOpen: function(value, inst) { 
+                $(this).val(parseFloat(value)); 
+                }
+                });
+{% endif %}
+             {% if amcharts == 1 %}
+                var chart;
+                {% if chart and chart == 1 %}
+                var chartData = {{ data|raw }};
+                AmCharts.ready(function () {
+                // SERIAL CHART
+                chart = new AmCharts.AmSerialChart();
+                chart.dataProvider = chartData;
+                chart.categoryField = "month";
+                chart.startDuration = 1;
+                chart.plotAreaBorderColor = "#DADADA";
+                chart.plotAreaBorderAlpha = 1;
+                //chart.marginBottom = 10;
+                chart.marginTop = 30;
+                // this single line makes the chart a bar chart          
+                //chart.rotate = true;
+
+                // AXES
+                // Category
+                var categoryAxis = chart.categoryAxis;
+                categoryAxis.gridPosition = "start";
+                categoryAxis.gridAlpha = 0.1;
+                categoryAxis.axisAlpha = 0;
+
+                // Value
+                var valueAxis = new AmCharts.ValueAxis();
+                valueAxis.axisAlpha = 0;
+                valueAxis.gridAlpha = 0.1;
+                valueAxis.position = "left";
+                valueAxis.tickLength = 0;
+                chart.addValueAxis(valueAxis);
+
+                // GRAPHS
+                // first graph
+                var graph1 = new AmCharts.AmGraph();
+                graph1.type = "column";
+                graph1.title = "{{attribute(labels,1)}}-{{attribute(labels,0)}}";
+                graph1.valueField = "inc";
+                graph1.balloonText = "{{attribute(labels,1)}}: [[value]] {{attribute(labels,0)}}";
+                graph1.lineAlpha = 0;
+                graph1.fillColors = "#517ca9";
+                graph1.fillAlphas = 1;
+                chart.addGraph(graph1);
+
+                // second graph
+                var graph2 = new AmCharts.AmGraph();
+                graph2.type = "column";
+                graph2.title = "{{attribute(labels,2)}}-{{attribute(labels,0)}}";
+                graph2.valueField = "exp";
+                graph2.balloonText = "{{attribute(labels,2)}}: [[value]] {{attribute(labels,0)}}";
+                graph2.lineAlpha = 0;
+                graph2.fillColors = "#DA0000";
+                graph2.fillAlphas = 1;
+                chart.addGraph(graph2);
+                
+                // LEGEND
+                var legend = new AmCharts.AmLegend();
+                chart.addLegend(legend);
+
+                // WRITE
+                chart.write("placeholder");
+                });
+                {% endif %}
+                {% if chart and chart == 2 %}
+                var chartData = [{% for i in data %}{"label": "{{ i.name }} [{{i.sum}}]",  "data": {{ i.value }}}{% if not loop.last%},{% endif %}{% endfor %}];
+                var legend;
+                AmCharts.ready(function () {
+                // PIE CHART
+                chart = new AmCharts.AmPieChart();
+                chart.dataProvider = chartData;
+                chart.titleField = "label";
+                chart.valueField = "data";
+                chart.outlineColor = "#FFFFFF";
+                chart.outlineAlpha = 0.8;
+                chart.outlineThickness = 1;
+                chart.groupPercent = 0.7;
+                chart.labelRadius = 15;
+                chart.startEffect = ">";
+                // this makes the chart 3D
+                //chart.depth3D = 15;
+                //chart.angle = 20;
+                // WRITE
+                chart.write("placeholder");
+                });
+                {% endif %}
+                {% if chart and chart == 3 %}
+                {% endif %}
+                {% endif %}
+    });
+    
+{% endif %}
+</script>

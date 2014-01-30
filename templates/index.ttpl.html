@@ -1,0 +1,42 @@
+{% extends "main.ttpl.html" %}
+
+{% block content %}
+<div id="homepage">
+<div class="links">
+<fieldset>
+<legend>{{title1}}</legend>
+<input class="home-url" type="button" onclick="window.location='{{constant('WR')}}transactions/create';" value="{{burl1}}">
+<input class="home-url" type="button" onclick="window.location='{{constant('WR')}}category/create';" value="{{burl2}}">
+</fieldset>
+</div>
+<div class="сrates">
+<fieldset>
+<legend>{{title2}}</legend>
+{% if noinfo %}
+<h1>{{noinfo}}</h1>
+{% else %}
+{% for i in data %}
+<p><h1>1 {{i.code}} = {{i.rate}} {{i.home_currency}}</h1></p>
+{% endfor %}
+{% endif %}
+</fieldset>
+</div>
+<div class="ipayments">
+<fieldset>
+<legend>{{title3}}</legend>
+{% if data2 %}
+<ul>
+{% for i in data2 %}
+
+<li class="{% if i.status == 1 %}checked{% else %}wait{% endif %}">{{i.category}}</li>
+
+{% endfor %}
+</ul>
+{% else %}
+{% if noinfo2 %}<h1>{{noinfo2}}</h1>{% endif %}
+{% endif %}
+</fieldset>
+</div>
+<div class="clear"></div>
+</div>
+{% endblock %}

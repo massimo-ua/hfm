@@ -1,0 +1,25 @@
+#edit {
+    BORDER: 0px; width: 350px; PADDING: 2px; BACKGROUND: #e0e0e0; margin: 3px auto; color: #505050;
+}
+#edit span {
+    display: inline-block; width: 100px; font-weight: bolder; margin: 0px 0px 0px 5px;
+}
+#edit select {
+    width: 200px;
+}
+#edit p.centered {
+    text-align: center;
+}
+#edit input.button {
+    background: #303030; color: #f0f0f0; font-weight: bolder; width: 100px; border: 0px;
+}
+#edit p.head {
+    background: #303030; color: #f0f0f0; font-weight: bolder; padding: 2px 2px 2px 2px;
+}
+/*#edit div.error { display: none; }*/
+#edit select.error, #edit input.error { background-color: #ee5555; }
+#edit label.error { margin-left: 130px; display: block; color: #ee5555; width: 220px; font-size: 0.9em; }
+#edit div.bar { height: 10px; background: #404040; }
+#edit p[class^='file_'] { margin: 1px; }
+#edit p span.file { display: inline-block; width: 230px; }
+#edit p button.fileremove { display: inline-block; }

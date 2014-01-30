@@ -1,0 +1,19 @@
+{% extends "main.ttpl.html" %}
+
+{% block content %}
+<div id="login">
+<form method="post" action="{{constant('WR')}}users/login" name="loginform">
+<table>
+<thead>
+<tr><th colspan="2">{{h1}}</th></tr>
+</thead>
+<tbody>
+<tr><td>{{d1}}:</td><td><input type="text" name="login"></td></tr>
+<tr><td>{{d2}}:</td><td><input type="password" name="password"></td></tr>
+<tr><td colspan="2"><input class="button" type="submit" value="{{submit}}"></td></tr>
+</tbody>
+</table>
+</form>
+</div>
+
+{% endblock %}

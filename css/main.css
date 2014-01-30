@@ -1,0 +1,20 @@
+BODY {
+	FONT-SIZE: 80%; COLOR: #101010; FONT-FAMILY: Trebuchet MS, Arial, Verdana, Helvetica, sans-serif;
+    BORDER: 0px; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: #f0f0f0; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+A {COLOR: #101010;}
+.clear {
+clear:both;
+}
+img {border: 0px;}
+A#show_search_form,A#hide_search_form {background: #303030; color: #f0f0f0; font-weight: bolder; border: 0px; margin: 5px; padding: 1px; width: 100px; display: inline-block; text-align: center;}
+div.search_form {width: 1000px; margin: auto;}
+#ui-datepicker-div {display: none;}
+span.filter_item {
+margin: 0px; padding: 1px; display: inline-block; width: 200px;
+}
+input.button {background: #303030; color: #f0f0f0; font-weight: bolder; width: 100px; border: 0px;}
+
+p.header {
+color: #303030; margin: 2px; font-weight: bolder;
+}
