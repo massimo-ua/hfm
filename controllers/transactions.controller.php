@@ -12,13 +12,12 @@ Class Controller_Transactions Extends Controller_Base {
                 
         }
         function index() {
-                $uid = (isset($this->config['authorized']) && $this->config['authorized'] === true) ? $_SESSION['uid'] : 0;
-				$y = (isset($_GET['y']) && is_numeric($_GET['y']) && $_GET['y'] > 2010) ? floor($_GET['y']) : date("Y");
+                $y = (isset($_GET['y']) && is_numeric($_GET['y']) && $_GET['y'] > 2010) ? floor($_GET['y']) : date("Y");
                 $this->config['db']->ResetQuery();
                 $this->config['db']->SetType();
                 $this->config['db']->SetFields(array('_id','amount','currency','account','category','date'));
                 $this->config['db']->SetTables(array('vtransactions2'));
-                $this->config['db']->SetWhere(array("extract(year from date::date)=" . $y," AND uid=" . $this->config['uid']));
+                $this->config['db']->SetWhere(array("extract(year from date::date) = " . $y," AND uid = " . $this->config['uid']));
                 $this->config['db']->BuildQuery();
                 $data = $this->config['db']->RunQuery();
                 if(!empty($data)) {
