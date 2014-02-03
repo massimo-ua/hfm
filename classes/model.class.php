@@ -48,6 +48,13 @@ Class Model extends Singleton {
                     'type' => 'text',
                     'name' => 'opening_balance',
                     'value' => '0.00'
+                    ),
+                    'shared' => array(
+                    'help_text' => 'Публічний рахунок?',
+                    'id' => 'shared',
+                    'type' => 'checkbox',
+                    'name' => 'shared',
+                    'value' => '0'
                     )
                     );
             break;
@@ -90,6 +97,13 @@ Class Model extends Singleton {
                     'type' => 'checkbox',
                     'name' => 'visible',
                     'value' => '1'
+                    ),
+                    'shared' => array(
+                    'help_text' => 'Публічна категорія?',
+                    'id' => 'shared',
+                    'type' => 'checkbox',
+                    'name' => 'shared',
+                    'value' => '0'
                     )
                     );
             break;
