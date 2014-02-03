@@ -47,6 +47,7 @@ Class Auth extends Singleton {
                     $_SESSION['uname'] = $data[0]['name'];
                     $_SESSION['hash'] = $hash;
                     $this->config->set('authorized',true,true);
+                    $this->config->set('uid',$data[0]['_id'],true);
                     $this->config['logger']->eLog(__METHOD__ . ' Користувач ' . $_SESSION['uname'] . ' був успішно авторизований!');
                     return true;
                 }
