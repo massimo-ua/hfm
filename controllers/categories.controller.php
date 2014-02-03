@@ -8,12 +8,12 @@ Class Controller_Categories Extends Controller_Base {
                 $this->config = $config;
                 $this->vars = array();
                 $this->display = '';
-                $this->vars['th'] = array('№','Тип','Назва','Показувати','Публічна');
+                $this->vars['th'] = array('№','Тип','Назва','Показувати','Доступ');
         }
         function index() {
                 $this->config['db']->ResetQuery();
                 $this->config['db']->SetType();
-                $this->config['db']->SetFields(array('_id','type','name "item"',"'categories/view/'||_id::text \"item_url\"",'visible','shared::int "shared"' ));
+                $this->config['db']->SetFields(array('_id','type','name "item"',"'categories/view/'||_id::text \"item_url\"",'visible','shared_text' ));
                 $this->config['db']->SetTables(array('vcategories2'));
                 $this->config['db']->BuildQuery();
                 $data = $this->config['db']->RunQuery();
