@@ -278,3 +278,5 @@ END; $BODY$
   COST 100;
 ALTER FUNCTION create_transaction(integer, bigint, integer, character varying, integer, integer, date, integer, integer)
   OWNER TO mdb3;
+
+ALTER TABLE categories ADD COLUMN shared boolean NOT NULL DEFAULT false;
