@@ -42,8 +42,25 @@ END;
 $$
 delimiter ;
 
-create or replace VIEW `vcategories2` AS select `categories`.`_id` AS `_id`,`GET_CATEGORY_NAME`(`categories`.`_id`) AS `name`,case when `categories`.`type` = 1 then 'Прихід' when `categories`.`type` = 2 then 'Розхід' else 'Невизначений' end AS `type`,case when `categories`.`visible` = 1 then 'Так' else 'Ні' end AS `visible`, close_date, type type_dig, parent_id from `categories` where close_date IS NULL order by name;
+CREATE OR REPLACE VIEW vcategories2 AS 
+ SELECT categories._id, get_category_name(categories._id) AS name, 
+        CASE
+            WHEN categories.type = 1 THEN 'Прихід'::text
+            ELSE 'Розхід'::text
+        END AS type, 
+        CASE
+            WHEN categories.visible = 1 THEN 'Так'::text
+            ELSE 'Ні'::text
+        END AS visible, categories.close_date, categories.type AS type_dig, categories.parent_id,
+        case when categories.shared::int = 1 then 'Публічна' else 'Приватна' end as shared_text, shared::int "shared"
+   FROM categories
+  WHERE categories.close_date IS NULL
+  ORDER BY get_category_name(categories._id);
 
+ALTER TABLE vcategories2
+  OWNER TO mdb3;
+  
+  
 create or replace view vcurrencies2 as
 select _id,code,symbol,case when home = 1 then 'Так' else NULL end home,round(rate/100,2) rate from currencies where close_date is null order by name;
 
