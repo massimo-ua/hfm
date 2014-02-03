@@ -12,12 +12,13 @@ Class Controller_Transactions Extends Controller_Base {
                 
         }
         function index() {
+                $uid = (isset($this->config['authorized']) && $this->config['authorized'] === true) ? $_SESSION['uid'] : 0;
 				$y = (isset($_GET['y']) && is_numeric($_GET['y']) && $_GET['y'] > 2010) ? floor($_GET['y']) : date("Y");
                 $this->config['db']->ResetQuery();
                 $this->config['db']->SetType();
                 $this->config['db']->SetFields(array('_id','amount','currency','account','category','date'));
                 $this->config['db']->SetTables(array('vtransactions2'));
-                $this->config['db']->SetWhere(array("extract(year from date::date)=" . $y));
+                $this->config['db']->SetWhere(array("extract(year from date::date)=" . $y," AND uid=" . $this->config['uid']));
                 $this->config['db']->BuildQuery();
                 $data = $this->config['db']->RunQuery();
                 if(!empty($data)) {
@@ -28,6 +29,7 @@ Class Controller_Transactions Extends Controller_Base {
                     $this->config['db']->SetType();
                     $this->config['db']->SetFields(array('distinct extract(year from date) "year"'));
                     $this->config['db']->SetTables(array('transactions'));
+                    $this->config['db']->SetWhere(array("uid = " . $this->config['uid']));
                     $this->config['db']->SetOrder(array('1 desc'));
                     $this->config['db']->BuildQuery();
                     $years = $this->config['db']->RunQuery();
@@ -64,7 +66,7 @@ Class Controller_Transactions Extends Controller_Base {
                 $ones['type'] = ($_POST['type'] && is_numeric($_POST['type']) && in_array($_POST['type'],array(1,2,3))) ? $_POST['type'] : NULL;
                 $ones['status']=1;
                 //
-                $ones['uid'] = (isset($this->config['authorized']) && $this->config['authorized'] === true) ? $_SESSION['uid'] : 0;
+                $ones['uid'] = $this->config['uid'];
                 //
                 if(isset($_POST['files']) && !empty($_POST['files'])) {
                     $files = array_filter($_POST['files'],'is_numeric');
@@ -177,13 +179,15 @@ Class Controller_Transactions Extends Controller_Base {
             }
             else
             {
+                $ones['uid'] = (isset($this->config['authorized']) && $this->config['authorized'] === true) ? $_SESSION['uid'] : 0;
+                //make get uid global function of auth toolkit
                 if(isset($this->config['args'][0]) && is_numeric($this->config['args'][0]))
                 {
                 $this->config['db']->ResetQuery();
                 $this->config['db']->SetType();
                 $this->config['db']->SetFields(array('_id','type','account_id','mirror_account_id','category_id','coalesce(round(amount/100.00,2),0.00) amount','date','notes'));
                 $this->config['db']->SetTables(array('transactions'));
-                $this->config['db']->SetWhere(array('_id = ' . $this->config['args'][0]));
+                $this->config['db']->SetWhere(array('_id = ' . $this->config['args'][0], ' AND uid = ' . $this->config['uid']));
                 $this->config['db']->BuildQuery();
                 $data = $this->config['db']->RunQuery();
                 if(empty($data)) $model = $this->config['model']->GetModel($this->config['cc']);
@@ -224,7 +228,7 @@ Class Controller_Transactions Extends Controller_Base {
                 $this->config['db']->SetType();
                 $this->config['db']->SetFields(array('1'));
                 $this->config['db']->SetTables(array('transactions'));
-                $this->config['db']->SetWhere(array('_id = ' . $this->config['args'][0]));
+                $this->config['db']->SetWhere(array('_id = ' . $this->config['args'][0], ' AND uid = ' . $this->config['uid']));
                 $this->config['db']->BuildQuery();
                 $data = $this->config['db']->RunQuery();
                 if(empty($data)) 
